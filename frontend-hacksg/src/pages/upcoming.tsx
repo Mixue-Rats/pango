@@ -7,6 +7,7 @@ import { Event } from '../types/Event';
 import TabContainer from '../components/TabContainer';
 import PaginatedCards from '../components/PaginatedCards';
 import { useAuthContext } from '../hooks/useAuthContext';
+import withAuth from '../components/Auth';
 
 
 const Upcoming: React.FC = () => {
@@ -46,4 +47,4 @@ const Upcoming: React.FC = () => {
     );
 };
 
-export default Upcoming;
+export default withAuth(Upcoming);

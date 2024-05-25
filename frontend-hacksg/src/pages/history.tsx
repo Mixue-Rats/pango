@@ -7,7 +7,7 @@ import { Event } from '../types/Event';
 import TabContainer from '../components/TabContainer';
 import PaginatedCards from '../components/PaginatedCards';
 import { useAuthContext } from '../hooks/useAuthContext';
-
+import withAuth from '../components/Auth';
 
 
 
@@ -24,6 +24,7 @@ const HistoryPage: React.FC = () => {
             today.setHours(0, 0, 0, 0); // Set today date to start of the day
 
             try {
+                console.log(user.user.email)
                 const res = await axios.get(`/joinedByUser/${user.user.email}`);
                 const filteredEvents = res.data.filter((event: Event) => {
                     const eventDate = new Date(event.startDateTime);
@@ -51,4 +52,4 @@ const HistoryPage: React.FC = () => {
     );
 };
 
-export default HistoryPage;
+export default withAuth(HistoryPage);
