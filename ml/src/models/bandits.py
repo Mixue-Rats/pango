@@ -4,10 +4,9 @@ class BanditPolicy:
 
     def __init__(self, 
                  init_='pes', 
-                 weigh_dist=True,
+                 weigh_dist=False,
                  beta=0.7
                  ):
-        
         self.alpha_0_phi = 1
         self.alpha_1_phi = 1
         self.weigh_dist = weigh_dist
@@ -22,9 +21,9 @@ class BanditPolicy:
         max_ = max(dist_map.values())
         dist_map = {k : (1 - (max_ - v) / (max_ - min_)) for k, v in dist_map.items()}
 
-    def get_recommendation(self, click_map : dict, dist_map : dict, t : int) -> list[str]:
+    def get_recommendation(self, click_map : dict, t : int, dist_map : dict=None) -> list[str]:
         score_map = {k : self.score(v, t - v) for k, v in click_map.items()}
-        if self.weigh_dist:
+        if self.weigh_dist or dist_map is not None:
             dist_map = self.normalise_dist_map(dist_map)
             score_map = {k : self.beta * v + (1 - self.beta) * dist_map[k] 
                          for k, v in score_map.items()}

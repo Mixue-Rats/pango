@@ -31,7 +31,7 @@ class EmbeddingModel:
         return self.model(output_).last_hidden_state[:, 0, :].numpy()
 
     def score(self, 
-              x_ , 
+              x_, 
               y_) -> float:
         x = x_.reshape((x_.shape[1],))
         y = y_.reshape((y_.shape[1],))
