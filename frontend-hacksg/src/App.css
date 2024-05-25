@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #B0EBB4; 
-  --secondary-color: #BFF6C3;
-  --background-color: #ACE1AF; 
+  --primary-color: #ffffff; 
+  --secondary-color: #ffffff;
+  --background-color: #ffffff; 
   --text-color: #000000; 
   --highlight-color: #e74c3c; /* Red for Highlights */
 }
