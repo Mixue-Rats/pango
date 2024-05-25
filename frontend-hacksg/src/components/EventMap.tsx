@@ -21,7 +21,7 @@ const EventMap = ({events}: EventsListProps) => {
     }
 
     const [userLocation, setUserLocation] = useState({latitude: userAddress.lat, longitude: userAddress.lng});
-    const [err, setError] = useState("");
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     
     useEffect(() => {
@@ -88,9 +88,9 @@ const EventMap = ({events}: EventsListProps) => {
         <Container>
             <Row>
                 { loading ? (
-                    <p className='my-5 text-center'>Loading...</p>
-                ) : err ? (
-                    <p className='my-5 text-center text-danger'>{err}</p>
+                    <div className="alert alert-primary">Loading</div>
+                ) : error ? (
+                    <div className="alert alert-danger">{error}</div>
                 ) : (
                     <APIProvider apiKey={API_KEY}>
                         <Map

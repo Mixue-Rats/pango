@@ -37,7 +37,6 @@ export const useUserSignup = () => {
             // Update auth context
             dispatch({type : 'LOGIN', payload : json})
             setLoading(false)
-            navigate('/profile/volunteer')
         }
     }
     return {signup, isLoading, error}
