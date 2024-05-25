@@ -30,7 +30,7 @@ const UserProfile = () => {
                   <MDBBreadcrumbItem>
                     <a href="#">User</a>
                   </MDBBreadcrumbItem>
-                  <MDBBreadcrumbItem active>Avid Volunteerer</MDBBreadcrumbItem>
+                  <MDBBreadcrumbItem active>profile</MDBBreadcrumbItem>
                 </MDBBreadcrumb>
               </MDBCol>
             </MDBRow>
