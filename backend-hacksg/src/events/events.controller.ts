@@ -26,6 +26,19 @@ export class EventsController {
     return response.status(HttpStatus.OK).json(result);
   }
 
+  @Post('/recommend')
+  async fetchRecommendedEvent(@Res() response, @Body() body: { userId: string }) {
+    const { userId } = body;
+    const result = await this.eventsService.recommend(userId);
+    return response.status(HttpStatus.OK).json(result);
+  }
+
+  @Post('/updateClick')
+  async click(@Res() response, @Body() clickDto: any) {
+    const result = await this.eventsService.click(clickDto);
+    return response.status(HttpStatus.OK).json(result);
+  }
+
   // Endpoint to get users who joined an event by event ID
   // Event ID is "_id"
   @Get('/joinedBy/:eventId')

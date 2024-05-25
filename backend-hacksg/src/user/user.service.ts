@@ -7,12 +7,14 @@ import { JwtService } from '@nestjs/jwt';
 import { Prefs, PrefsDocument } from "./prefs.schema";
 import { Org, OrgDocument } from "./org.schema"
 import { HttpService } from "@nestjs/axios";
+import { Achievement, AchievementDocument } from "./achievements.schema";
 
 @Injectable()
 export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Prefs.name) private prefsModel: Model<PrefsDocument>,
     @InjectModel(Org.name) private orgModel: Model<OrgDocument>,
+    @InjectModel(Achievement.name) private achievementModel: Model<AchievementDocument>,
     private readonly httpService: HttpService
     ) { }
     async signup(user: User, jwt: JwtService): Promise<any> {
@@ -132,6 +134,33 @@ export class UserService {
           return foundUser;
         } else {
           throw new Error('User not found');
+        }
+    }
+    async addExp(email: string, addexp: number): Promise<User> {
+        const foundUser = await this.userModel.findOne({ email: email }).exec();
+        if (foundUser) {
+            // Add experience points
+            foundUser.exp += addexp;
+            foundUser.verified = true;  // Verify the user
+    
+            // Save the updated user document
+            await foundUser.save();
+            return foundUser;
+        } else {
+            throw new Error('User not found');
+        }
+    }
+    async addAchievement(email: string, achievementId: string): Promise<User> {
+        const foundUser = await this.userModel.findOne({ email: email }).exec();
+        const foundAchievement = await this.achievementModel.findOne({id: achievementId}).exec();
+        if (foundUser && foundAchievement) {
+            // Add experience points
+            foundUser.achievements.push(achievementId);
+            // Save the updated user document
+            await foundUser.save();
+            return foundUser;
+        } else {
+            throw new Error('User or Achievement not found');
         }
     }
 }

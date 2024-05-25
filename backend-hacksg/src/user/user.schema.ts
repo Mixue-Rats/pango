@@ -20,5 +20,9 @@ export class User {
     prefs: Types.ObjectId;
     @Prop({ type: Types.ObjectId, ref: 'Org' })
     orginfo: Types.ObjectId;
+    @Prop({default: 0})
+    exp: number;
+    @Prop()
+    achievements: Array<string>;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

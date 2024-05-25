@@ -10,6 +10,7 @@ import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { Prefs, PrefsSchema } from './user/prefs.schema';
 import { Org, OrgSchema} from './user/org.schema';
+import { Achievement, AchievementSchema } from './user/achievements.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { secret } from './utils/constants';
 import { join } from 'path/posix';
@@ -28,7 +29,8 @@ import { isAuthenticated } from './app.middleware';
       { name: User.name, schema: UserSchema }, 
       { name: Prefs.name, schema: PrefsSchema },
       { name: Event.name, schema: EventSchema },
-      { name: Org.name, schema: OrgSchema }
+      { name: Org.name, schema: OrgSchema },
+      { name: Achievement.name, schema: AchievementSchema }
     ]),
     MulterModule.register({
       storage: diskStorage({

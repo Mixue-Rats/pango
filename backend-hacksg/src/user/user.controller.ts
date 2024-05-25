@@ -56,4 +56,34 @@ export class UserController {
         });
         }
     }
+
+    @Post('/addexp')
+    async addExp(@Res() response, @Body() addExpDto: any) {
+        const { email, exp } = addExpDto;
+        try {
+            const updatedUser = await this.userService.addExp(email, exp);
+            return response.status(HttpStatus.OK).json({
+                updatedUser,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.NOT_FOUND).json({
+                message: error.message,
+            });
+        }
+    }
+
+    @Post('/addachievement')
+    async addAchievement(@Res() response, @Body() addAchievementDto: any) {
+        const { email, achievementId } = addAchievementDto;
+        try {
+            const updatedUser = await this.userService.addAchievement(email, achievementId);
+            return response.status(HttpStatus.OK).json({
+                updatedUser,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.NOT_FOUND).json({
+                message: error.message,
+            });
+        }
+    }
 }
