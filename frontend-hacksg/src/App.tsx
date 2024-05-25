@@ -27,8 +27,6 @@ import Upcoming from './pages/upcoming';
 import { ProfileContextProvider } from "./context/ProfileContext";
 import { EventContextProvider } from "./context/EventContext";
 
-import Address from "./types/Address";
-
 function App() {
   return (
     <>
@@ -36,7 +34,7 @@ function App() {
         <NavBar />
         <div className="pages" >
           <Routes>
-            <Route path="/" element={<UserEvents />} />
+            <Route path="/" element={<Home />} />
             <Route path="/selectUserType" element={<SelectUserType />} />
             <Route path="/home" element={<Home />} />
             <Route path="/signup/volunteer" element={<UserSignup />} />
@@ -63,7 +61,7 @@ function App() {
                 <OrgProfile />
               </ProfileContextProvider>
             } />
-            <Route path="/events" element={
+            <Route path="/events/user" element={
               <EventContextProvider>
                 <Events />
               </EventContextProvider>

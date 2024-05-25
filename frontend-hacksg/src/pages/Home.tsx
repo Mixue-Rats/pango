@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css'; 
 
 // Importing the image from local assets directory
-import image from '../assets/images/test.png';  // Adjust the path as necessary
+import image from '../assets/images/pango_lvl1.png';  // Adjust the path as necessary
 
 
 const Home = () => {
