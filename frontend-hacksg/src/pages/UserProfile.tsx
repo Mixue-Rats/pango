@@ -18,6 +18,8 @@ import {
 
   import { useAuthContext } from '../hooks/useAuthContext';
 import { time } from 'console';
+import withAuth from '../components/Auth';
+
   
 
 
@@ -185,4 +187,4 @@ const UserProfile = () => {
       );
     };
 
-export default UserProfile;
+export default withAuth(UserProfile);

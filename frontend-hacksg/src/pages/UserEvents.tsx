@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import EventMap from '../components/EventMap';
 import TabContainer from '../components/TabContainer';
 import { Event } from '../types/Event';
+import withAuth from '../components/Auth';
+
 
 const UserEvents = () => {
 
@@ -32,4 +34,4 @@ const UserEvents = () => {
     );
 };
 
-export default UserEvents;
+export default withAuth(UserEvents);

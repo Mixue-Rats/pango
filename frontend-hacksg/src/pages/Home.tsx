@@ -10,6 +10,8 @@ import pango3 from '../assets/images/pango_lvl3.png';
 import pango4 from '../assets/images/pango_lvl4.png';
 import AchievementsGrid from '../components/Achievements';
 import { useAuthContext } from '../hooks/useAuthContext';
+import withAuth from '../components/Auth';
+
 
 
 
@@ -68,4 +70,4 @@ const Home = () => {
 }
 
 
-export default Home;
+export default withAuth(Home);
