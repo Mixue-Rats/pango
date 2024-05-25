@@ -1,0 +1,15 @@
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  backend:
+    build: .
+    container_name: backend
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3010:3010"
+    depends_on:
+      - mongodb
