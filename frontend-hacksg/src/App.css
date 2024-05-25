@@ -62,3 +62,10 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.custom-btn {
+  padding: 50px 20px;  /* Larger padding */
+  margin: 0 10px;      /* Custom spacing between buttons */
+  font-size: 18px;     /* Larger font size */
+  width: 120px;
+}
