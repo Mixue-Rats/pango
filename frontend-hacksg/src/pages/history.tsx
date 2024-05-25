@@ -15,6 +15,8 @@ const HistoryPage: React.FC = () => {
     const { user } = useAuthContext();
     const [events, setEvents] = useState<Event[]>([]);
     const [err, setError] = useState("");
+
+    
     
     useEffect(() => {
         const fetchEvents = async () => {
@@ -22,7 +24,7 @@ const HistoryPage: React.FC = () => {
             today.setHours(0, 0, 0, 0); // Set today date to start of the day
 
             try {
-                const res = await axios.get(`/joinedByUser/${user.email}`);
+                const res = await axios.get(`/joinedByUser/${user.user.email}`);
                 const filteredEvents = res.data.filter((event: Event) => {
                     const eventDate = new Date(event.startDateTime);
                     return eventDate > today; // Keep only events that have passed
@@ -39,7 +41,7 @@ const HistoryPage: React.FC = () => {
         fetchEvents();
     }, []);
 
-
+    
     return (
         <div>
             <h1>History</h1>

@@ -20,12 +20,7 @@ const Home = () => {
     const handleNavigate = (path: string) => {
         navigate(path);  // Function to redirect to specified path
     };
-    
-    
-    if (!user) {
-        navigate('/login/volunteer');
-        return null; // Stop execution if no user
-    }
+
 
     const pangoLevels = [
         { expThreshold: 0, image: pango, title: 'Level 1: Baby Pango' },
@@ -46,7 +41,7 @@ const Home = () => {
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
             <h3 className='text-center mt-3' style={{color: 'var(--text-color)'}}>{currentLevel && currentLevel.title}</h3>
         <div className="progress">
-        <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: `${(user.exp % 100)}%` }} aria-valuenow={user.exp} aria-valuemin={0} aria-valuemax={100}></div>
+        <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: `${(user.user.exp % 100)}%` }} aria-valuenow={user.user.exp} aria-valuemin={0} aria-valuemax={100}></div>
         </div>
             <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '40vh' }}>
                 {/* <Row style={{backgroundColor: "var()"}}> */}
@@ -57,15 +52,15 @@ const Home = () => {
             </Container >
             <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '0vh' }}>
             <Col xs={12} md={4} className="d-flex justify-content-center">
-                    <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
-                    <Button variant="success" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
+                    <Button variant="secondary" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
+                    <Button variant="primary" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
                     <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/history')}>History</Button>
                 </Col>
             </Container>
             <Row>
                 <Col>
-                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: {user.achievements ? user.achievements.length : 0}</h4>
-                <AchievementsGrid user={user}/>    
+                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: {user.user.achievements ? user.user.achievements.length : 0}</h4>
+                <AchievementsGrid user={user.user}/>    
                 </Col>
             </Row>
         </div>
