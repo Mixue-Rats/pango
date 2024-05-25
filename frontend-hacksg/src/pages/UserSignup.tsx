@@ -20,6 +20,8 @@ const UserSignup = () => {
 
     const [secondError, setError] = useState(null);
 
+    const [waiting, setWaiting] = useState(false);
+
     const handleSubmit = async () => {
         await axios.post('/api/v1/user/prefs', {
             email: email,
@@ -31,6 +33,7 @@ const UserSignup = () => {
             additionalPreferences: paragraph
         })
         .then((res) => {
+            setWaiting(false);
             console.log(res.data);
             navigate('/home');
         })
@@ -43,7 +46,8 @@ const UserSignup = () => {
     const handleSignup = async (e: any) => {
         e.preventDefault();
         await signup(name.trim(), email.trim(), password);
-        await new Promise(r => setTimeout(r, 1000));
+        setWaiting(true);
+        await new Promise(r => setTimeout(r, 5000));
         if (!isLoading && !error) {
             await handleSubmit();
         }
@@ -130,7 +134,7 @@ const UserSignup = () => {
                     {error && <label className="text-danger">{error}</label>}
                     {secondError && <label className="text-danger">Something went wrong.</label>}
                     <div className='text-center text-md-start mt-4 pt-2'>
-                        { isLoading ? (
+                        { isLoading || waiting ? (
                             <Button className="mb-0 px-5" size='lg'>
                                 <div className="spinner-border" role="status">
                                     <span className="visually-hidden">Loading...</span>
