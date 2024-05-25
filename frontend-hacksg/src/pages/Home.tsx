@@ -9,38 +9,57 @@ import pango2 from '../assets/images/pango_lvl2.png';
 import pango3 from '../assets/images/pango_lvl3.png';
 import pango4 from '../assets/images/pango_lvl4.png';
 import AchievementsGrid from '../components/Achievements';
+import { useAuthContext } from '../hooks/useAuthContext';
+
 
 
 const Home = () => {
-
+    // const { user } = useAuthContext();
+    const user = { exp: 320, achievements: ["Red Cross!", "Animal Lover", "Saving the Beach!", "Helping Ah Ma!"]  };
     const navigate = useNavigate();  // Hook for navigation
     const handleNavigate = (path: string) => {
         navigate(path);  // Function to redirect to specified path
     };
 
+    const pangoLevels = [
+        { expThreshold: 0, image: pango, title: 'Level 1: Baby Pango' },
+        { expThreshold: 100, image: pango2, title: 'Level 2: Growing Pango' },
+        { expThreshold: 200, image: pango3, title: 'Level 3: Mature Pango' },
+        { expThreshold: 300, image: pango4, title: 'Level 4: Super Pango' },
+    ];
+
+
+    const getCurrentLevel = (exp: number) => {
+        // Find the current level based on experience
+        return pangoLevels.slice().reverse().find(level => exp >= level.expThreshold);
+    };
+
+    const currentLevel = getCurrentLevel(user.exp);
+
     return (
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
-        <h3 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Level 3: Baby Pango</h3>
+            <h3 className='text-center mt-3' style={{color: 'var(--text-color)'}}>{currentLevel && currentLevel.title}</h3>
         <div className="progress">
-            <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: '60%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}></div>
+        <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: `${(user.exp % 100)}%` }} aria-valuenow={user.exp} aria-valuemin={0} aria-valuemax={100}></div>
         </div>
-            <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '65vh' }}>
-                <Row style={{backgroundColor: "var()"}}>
+            <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '40vh' }}>
+                {/* <Row style={{backgroundColor: "var()"}}> */}
                     <Col>
-                        {/* Inline styles to set image size */}
-                        <Image src={pango4} alt="Pango" style={{ width: '300px', height: 'auto' }} className="mx-auto d-block" />
+                        {currentLevel && <Image src={currentLevel.image} alt="Pango" style={{ width: '300px', height: 'auto' }} className="mx-auto d-block" />}
                     </Col>
-                    <Col xs={12} md={4} className="d-flex justify-content-center">
+                {/* </Row> */}
+            </Container >
+            <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '0vh' }}>
+            <Col xs={12} md={4} className="d-flex justify-content-center">
                     <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
                     <Button variant="primary" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
                     <Button variant="secondary" className="custom-btn" onClick={() => handleNavigate('/history')}>History</Button>
                 </Col>
-                </Row>
-            </Container >
+            </Container>
             <Row>
                 <Col>
-                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: 1/5</h4>
-                <AchievementsGrid user={{ achievements: ["Red Cross!", "Animal Lover", "Saving the Beach!", "Helping Ah Ma!"] }} />    
+                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: {user.achievements.length}</h4>
+                <AchievementsGrid user={user}/>    
                 </Col>
             </Row>
         </div>
