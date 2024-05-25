@@ -12,6 +12,7 @@ import UserSignup from "./pages/UserSignup";
 import UserLogin from "./pages/UserLogin";
 import UserProfile from "./pages/UserProfile";
 import UserEvents from "./pages/UserEvents";
+import Landing from "./pages/Landing";
 
 // Org pages
 import OrgSignup from "./pages/OrgSignup";
@@ -34,7 +35,7 @@ function App() {
         <NavBar />
         <div className="pages" >
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/selectUserType" element={<SelectUserType />} />
             <Route path="/home" element={<Home />} />
             <Route path="/signup/volunteer" element={<UserSignup />} />

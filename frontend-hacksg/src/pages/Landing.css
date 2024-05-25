@@ -1,0 +1,42 @@
+/* Apply a basic styling */
+.landing-container {
+    font-family: 'Open Sans', sans-serif; /* Use a nice font */
+    color: #333; /* Softer color for the text */
+    text-align: center; /* Center align text */
+    padding: 40px 20px; /* Padding around the content */
+    background: #f4f4f4; /* Light grey background */
+}
+
+.landing-container h1 {
+    color: #4a90e2; /* Theme color for headings */
+}
+
+.credentials {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 8px; /* Rounded corners for the box */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for 3D effect */
+}
+
+.credentials h4 {
+    margin: 0; /* Remove default margin */
+    color: #666; /* Darker text for contrast */
+}
+
+button {
+    background-color: #4a90e2; /* Theme color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #357ABD; /* Slightly darker on hover */
+}
