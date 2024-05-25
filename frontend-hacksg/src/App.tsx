@@ -20,6 +20,8 @@ import OrgProfile from "./pages/OrgProfile";
 import CreateEventForm from './pages/forms/CreateEventForm';
 import ViewEvents from './pages/ViewEvents';
 import EventDetails from './pages/EventDetails';
+import History from './pages/history';
+import Upcoming from './pages/upcoming';
 
 // Contexts
 import { ProfileContextProvider } from "./context/ProfileContext";
@@ -44,6 +46,8 @@ function App() {
             <Route path="/create-event" element={<CreateEventForm />} />
             <Route path="/view-events" element={<ViewEvents />} />
             <Route path="/event-details" element={<EventDetails />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/upcoming" element={<Upcoming />} />
             <Route path="/profile/volunteer" element={
               <ProfileContextProvider>
                 <UserProfile />
