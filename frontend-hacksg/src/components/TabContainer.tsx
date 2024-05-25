@@ -9,7 +9,7 @@ const TabContainer = ({events}: EventsListProps) => {
                 <Tab eventKey="recommendations" title="Robopango's Recommendations">
                     <div className="horizontal-scroll">
                         {events && events.map((event: Event) => (
-                            <Col className="w-2 border border-success" key={event._id}>
+                            <Col className='mx-2 px-1' key={event._id}>
                                 <LargeCard {...event}/>
                             </Col>
                         ))}
