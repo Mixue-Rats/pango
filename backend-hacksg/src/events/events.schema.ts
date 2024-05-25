@@ -21,5 +21,7 @@ export class Event {
     startDateTime: Date
     @Prop()
     endDateTime: Date
+    @Prop({ type: Map, of: Number, default: {} })
+    clicks: Map<string, number>;
 }
 export const EventSchema = SchemaFactory.createForClass(Event);
