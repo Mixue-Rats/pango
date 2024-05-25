@@ -23,7 +23,8 @@ import { isAuthenticated } from './app.middleware';
 @Module({
   imports: [ 
     HttpModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/volunteer'),
+    //MongooseModule.forRoot('mongodb://localhost:27017/volunteer'),
+    MongooseModule.forRoot('mongodb://mongodb:27017/volunteer'),
     EventsModule,
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema }, 
