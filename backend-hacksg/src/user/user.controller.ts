@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, UploadedFiles, Put, Req, Res } from "@nestjs/common";
 import { User } from "./user.schema";
 import { Prefs } from "./prefs.schema";
+import { Org } from "./org.schema";
 import { UserService } from "./user.service";
 import { JwtService } from '@nestjs/jwt'
 
@@ -34,6 +35,14 @@ export class UserController {
         // Call to ML
         return response.status(HttpStatus.CREATED).json(updatedUser);
     }
+
+    @Post('/orginfo')
+    async setOrg(@Res() response, @Body() org: Org) {
+        const updatedUser = await this.userService.updateOrCreateOrg(org);
+        // Call to ML
+        return response.status(HttpStatus.CREATED).json(updatedUser);
+    }
+
     @Post('/verify')
     async verifyUser(@Res() response, @Body() user: User) {
         try {
