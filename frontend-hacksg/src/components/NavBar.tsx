@@ -21,6 +21,8 @@ const NavBar = () => {
 
   const { user } = useAuthContext();
 
+  console.log(user)
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
         { user && user.user.role == "volunteer" ? (
@@ -35,7 +37,7 @@ const NavBar = () => {
                 </Nav>
                 </Navbar.Collapse>
             </Container>
-        ) : user && user.user.role == "org" ? (
+        ) : user && user.user.role == "organisation" ? (
             <Container>
                 <Navbar.Brand href="/">frontend</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
