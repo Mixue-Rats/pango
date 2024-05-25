@@ -3,8 +3,8 @@ export interface Event {
     title: string,
     desc: string,
     location: string,
-    startDate: string,
-    endDate: string,
+    startDateTime: string,
+    endDateTime: string,
     orgEmail: string,
     createdDate: string,
     participants: string[]
