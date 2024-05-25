@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSignup } from '../hooks/useSignup';
+import { useUserSignup } from '../hooks/useUserSignup';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const UserSignup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    const {signup, isLoading, error} = useSignup();
+    const {signup, isLoading, error} = useUserSignup();
 
     const handleSignup = async (e: any) => {
         e.preventDefault();

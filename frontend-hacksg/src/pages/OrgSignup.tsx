@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSignup } from '../hooks/useSignup';
+import { useOrgSignup } from '../hooks/useOrgSignup';
 import { Container, Form, Button } from 'react-bootstrap';
 
 const OrgSignup = () => {
@@ -12,7 +12,7 @@ const OrgSignup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    const {signup, isLoading, error} = useSignup();
+    const {signup, isLoading, error} = useOrgSignup();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
