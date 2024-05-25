@@ -22,12 +22,11 @@ const NavBar = () => {
 
     const { user } = useAuthContext();
 
-    console.log(user);
-
-    return (
-        <Navbar expand="lg" className="navbar-custom">
+  return (
+    <Navbar expand="lg" className="navbar-custom">
+        { user && user.user.role == "volunteer" ? (
             <Container>
-                <Navbar.Brand href="/">Pango</Navbar.Brand>
+                <Navbar.Brand href="/home">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -37,8 +36,31 @@ const NavBar = () => {
                 </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
-    );
+        ) : user && user.user.role == "organisation" ? (
+            <Container>
+                <Navbar.Brand href="/profile/org">Pango</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    <Nav.Link href="/profile/org">Profile</Nav.Link>
+                    <Nav.Link href="/events/org">Events</Nav.Link>
+                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                </Nav>
+                </Navbar.Collapse>
+            </Container>
+        ) : (
+            <Container>
+                <Navbar.Brand href="/home">Pango</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    <Nav.Link href="/selectUserType">Login/Signup</Nav.Link>
+                </Nav>
+                </Navbar.Collapse>
+            </Container>
+        )}
+    </Navbar>
+  );
 }
 
 export default NavBar;
