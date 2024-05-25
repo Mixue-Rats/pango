@@ -3,21 +3,11 @@ import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { Container, Row } from 'react-bootstrap';
 
 import Address from '../types/Address';
+import { EventsListProps } from '../types/Event';
 
 const API_KEY = "AIzaSyD4Bz14fWxxz5e8u6qsTy5seHotgy8ExDA"
 
-interface Event {
-    _id: string,
-    title: string,
-    desc: string,
-    location: string,
-    startDate: string,
-    endDate: string,
-    orgEmail: string,
-    createdDate: string
-}
-
-const EventMap = (events: Event[]) => {
+const EventMap = ({events}: EventsListProps) => {
 
     let userAddress: Address = {
         lat: 0,
@@ -55,20 +45,20 @@ const EventMap = (events: Event[]) => {
         <Container>
             <Row>
                 { loading ? (
-                    <p>Loading...</p>
+                    <p className='my-5 text-center'>Loading...</p>
                 ) : err ? (
-                    <p>{err}</p>
+                    <p className='my-5 text-center text-danger'>{err}</p>
                 ) : (
                     <APIProvider apiKey={API_KEY}>
-                    <Map
-                        style={{width: '100vw', height: '50vh'}}
-                        defaultCenter={{lat: userLocation.latitude, lng: userLocation.longitude}}
-                        defaultZoom={12}
-                        gestureHandling={'greedy'}
-                        disableDefaultUI={true}
-                    >
-                        <Marker position={{lat: userLocation.latitude, lng: userLocation.longitude}} />
-                    </Map>
+                        <Map
+                            style={{width: '100vw', height: '50vh'}}
+                            defaultCenter={{lat: userLocation.latitude, lng: userLocation.longitude}}
+                            defaultZoom={12}
+                            gestureHandling={'greedy'}
+                            disableDefaultUI={true}
+                        >
+                            <Marker position={{lat: userLocation.latitude, lng: userLocation.longitude}} />
+                        </Map>
                 </APIProvider>
                 )}
             </Row>

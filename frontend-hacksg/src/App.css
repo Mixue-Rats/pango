@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #B0EBB4; 
-  --secondary-color: #BFF6C3;
-  --background-color: #ACE1AF; 
+  --primary-color: #ffffff; 
+  --secondary-color: #ffffff;
+  --background-color: #ffffff; 
   --text-color: #000000; 
   --highlight-color: #e74c3c; /* Red for Highlights */
 }
@@ -61,4 +61,11 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.custom-btn {
+  padding: 50px 20px;  /* Larger padding */
+  margin: 0 10px;      /* Custom spacing between buttons */
+  font-size: 18px;     /* Larger font size */
+  width: 120px;
 }
