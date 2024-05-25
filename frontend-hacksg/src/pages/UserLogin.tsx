@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { Container, Form, Button } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
-
 const UserLogin = () => {
 
     useEffect(() => {
@@ -42,8 +40,10 @@ const UserLogin = () => {
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
                             </Button>
-                        ) : (
+                        ) : email && password ? (
                             <Button className="mb-0 px-5" size='lg' onClick={handleSubmit}>Login</Button>
+                        ) : (
+                            <Button className="mb-0 px-5" size='lg' disabled>Login</Button> 
                         )}
                         <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="/signup/volunteer" className="link-danger">Register</a></p>
                     </div>
