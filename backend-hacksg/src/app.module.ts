@@ -9,6 +9,7 @@ import { Event, EventSchema } from './events/events.schema';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { Prefs, PrefsSchema } from './user/prefs.schema';
+import { Org, OrgSchema} from './user/org.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { secret } from './utils/constants';
 import { join } from 'path/posix';
@@ -23,9 +24,11 @@ import { isAuthenticated } from './app.middleware';
     HttpModule,
     MongooseModule.forRoot('mongodb://localhost:27017/volunteer'),
     EventsModule,
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }, 
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema }, 
       { name: Prefs.name, schema: PrefsSchema },
-      { name: Event.name, schema: EventSchema }
+      { name: Event.name, schema: EventSchema },
+      { name: Org.name, schema: OrgSchema }
     ]),
     MulterModule.register({
       storage: diskStorage({

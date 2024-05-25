@@ -17,5 +17,9 @@ export class Event {
     createdDate: Date
     @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }] })
     participants: User[];
+    @Prop()
+    startDateTime: Date
+    @Prop()
+    endDateTime: Date
 }
 export const EventSchema = SchemaFactory.createForClass(Event);

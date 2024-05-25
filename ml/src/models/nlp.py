@@ -31,10 +31,10 @@ class EmbeddingModel:
         return self.model(output_).last_hidden_state[:, 0, :].numpy()
 
     def score(self, 
-              x : np.array, 
-              y : np.array) -> float:
-        x = x.reshape((x.shape[1],))
-        y = y.reshape((y.shape[1],))
+              x_ , 
+              y_) -> float:
+        x = x_.reshape((x_.shape[1],))
+        y = y_.reshape((y_.shape[1],))
         if self.metric_ == 'cos':
             s_ = np.dot(x, y) / (norm(x) * norm(y))
         elif self.metric_ == 'l1':
@@ -43,6 +43,7 @@ class EmbeddingModel:
             s_ = (x - y) ** 2
         else:
             raise NotImplementedError
+        print("score: {}".format(s_))
         return s_
     
     def create_pool(self, 
@@ -50,7 +51,8 @@ class EmbeddingModel:
                     a_embs : dict) -> list:
         scores = {}
         for k, v in a_embs.items():
-            scores[k] = self.score(u_emb, v)
+            s_ = self.score(u_emb, v)
+            scores[k] = s_
         scores = sorted(scores.items(), key=lambda x : x[1], reverse=True)
         scores = [x[0] for x in scores]
         if len(scores) > self.k:

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsOptional, IsArray } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsOptional, IsArray, IsDate } from 'class-validator';
 
 export class CreateEventDto {
   @IsNotEmpty()
@@ -20,4 +20,11 @@ export class CreateEventDto {
   @IsOptional()
   @IsArray()
   participants?: string[];
+
+  @IsDate()
+  startDateTime: Date;
+
+  @IsDate()
+  endDateTime: Date;
+
 }
