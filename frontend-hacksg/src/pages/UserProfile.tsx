@@ -17,11 +17,13 @@ import {
   } from 'mdb-react-ui-kit';
 
   import { useAuthContext } from '../hooks/useAuthContext';
+import { time } from 'console';
   
 
 
 const UserProfile = () => {
   const { user } = useAuthContext();
+  setTimeout(() => {}, 3000);
 
 
     return (
@@ -91,7 +93,7 @@ const UserProfile = () => {
                         <MDBCardText>Full Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{user.fullname}</MDBCardText>
+                        <MDBCardText className="text-muted">{user.user.fullname}</MDBCardText>
                       </MDBCol>
                     </MDBRow>
                     <hr />
@@ -100,7 +102,7 @@ const UserProfile = () => {
                         <MDBCardText>Email</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{user.email}</MDBCardText>
+                        <MDBCardText className="text-muted">{user.user.email}</MDBCardText>
                       </MDBCol>
                     </MDBRow>
                     <hr />

@@ -31,29 +31,12 @@ const AchievementsGrid = ({ user }: { user: { achievements: any[] } }) => {
                 <div key={achievement.id} className="item">
                     <div className="polaroid">
                         <img src={imageMap[achievement as keyof typeof imageMap] || 'defaultImagePath'}  alt={achievement.title} />
-                        <div className="caption" style={{ color: 'black' }}>{achievement}</div>
+                        <div className="caption" style={{ color: 'black' ,fontSize: '14px'}}>{achievement}</div>
                     </div>
                 </div>
             ))}
 
-            {/* Modal */}
-            {selectedAchievement && (
-                <Modal show={showModal} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>{selectedAchievement}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <img src={imageMap[selectedAchievement as keyof typeof imageMap] || 'defaultImagePath'} alt={selectedAchievement} style={{ width: '100%' }} />
-                        {/* Additional details here */}
-                        <p>Here are some details about the achievement...</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            )}
+    
         </div>
     );
 };

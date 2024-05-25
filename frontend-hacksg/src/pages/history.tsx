@@ -15,6 +15,8 @@ const HistoryPage: React.FC = () => {
     const { user } = useAuthContext();
     const [events, setEvents] = useState<Event[]>([]);
     const [err, setError] = useState("");
+
+    
     
     useEffect(() => {
         const fetchEvents = async () => {
@@ -28,7 +30,7 @@ const HistoryPage: React.FC = () => {
                     return eventDate > today; // Keep only events that have passed
                 });
                 setEvents(filteredEvents);
-                console.log(filteredEvents);git
+                console.log(filteredEvents);
             } catch (error) {
                 console.warn(error);
                 setError("Failed to fetch events");
@@ -39,7 +41,7 @@ const HistoryPage: React.FC = () => {
         fetchEvents();
     }, []);
 
-
+    
     return (
         <div>
             <h1>History</h1>
