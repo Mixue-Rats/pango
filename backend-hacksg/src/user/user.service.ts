@@ -5,12 +5,14 @@ import { User, UserDocument } from "./user.schema";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Prefs, PrefsDocument } from "./prefs.schema";
+import { Org, OrgDocument } from "./org.schema"
 import { HttpService } from "@nestjs/axios";
 
 @Injectable()
 export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Prefs.name) private prefsModel: Model<PrefsDocument>,
+    @InjectModel(Org.name) private orgModel: Model<OrgDocument>,
     private readonly httpService: HttpService
     ) { }
     async signup(user: User, jwt: JwtService): Promise<any> {
@@ -102,6 +104,26 @@ export class UserService {
 
         return updatedUser;
     }
+    async updateOrCreateOrg(org: Org): Promise<any> {
+        const existingOrg = await this.orgModel.findOne({ email: org.email }).exec();
+        let updatedOrg;
+        if (existingOrg) {
+            updatedOrg = await this.orgModel.findByIdAndUpdate(existingOrg._id, org, { new: true }).exec();
+        } else {
+            const newOrg = new this.orgModel(org);
+            updatedOrg = await newOrg.save();
+        }
+    
+        // Optionally, update the user's document if necessary
+        const updatedUser = await this.userModel.findOneAndUpdate(
+            { email: org.email },
+            { org: updatedOrg._id }, 
+            { new: true }
+        ).exec();
+    
+        return updatedUser;
+    }
+    
     async verify(user: User): Promise<User> {
         const foundUser = await this.userModel.findOne({ email: user.email }).exec();
         if (foundUser) {

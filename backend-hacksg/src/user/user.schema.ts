@@ -4,8 +4,6 @@ import { Document, Types } from 'mongoose';
 export type UserDocument = User & Document;
 @Schema()
 export class User {
-    @Prop({ unique: true })
-    id: number;
     @Prop({required:true})
     fullname: string;
     @Prop({required:true, unique:true, lowercase:true})
@@ -20,5 +18,7 @@ export class User {
     verified: Boolean
     @Prop({ type: Types.ObjectId, ref: 'Prefs' })
     prefs: Types.ObjectId;
+    @Prop({ type: Types.ObjectId, ref: 'Org' })
+    orginfo: Types.ObjectId;
 }
 export const UserSchema = SchemaFactory.createForClass(User);
