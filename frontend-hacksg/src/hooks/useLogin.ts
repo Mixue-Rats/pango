@@ -27,8 +27,8 @@ export const useLogin = () => {
         const json = await resp.json()
         if (!resp.ok) {
             setLoading(false)
-            setError(json.error)
-            console.log(json.error)
+            setError(json.message)
+            console.warn(json.message)
         }
         if (resp.ok) {
             // Save user info to local storage
@@ -37,8 +37,9 @@ export const useLogin = () => {
             // Update auth context
             dispatch({type : 'LOGIN', payload : json})
             setLoading(false)
-            navigate('/')
+            navigate('/home')
         }
     }
+    console.log({login, isLoading, error})
     return {login, isLoading, error}
 }

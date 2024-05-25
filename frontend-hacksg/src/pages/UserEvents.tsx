@@ -1,65 +1,97 @@
-import { useState, useMemo } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import EventMap from '../components/Map';
+import EventMap from '../components/EventMap';
 import Address from '../types/Address';
+
+
+// Temp
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBContainer } from 'mdb-react-ui-kit';
+
+interface Event {
+    _id: string,
+    title: string,
+    desc: string,
+    location: string,
+    startDate: string,
+    endDate: string,
+    orgEmail: string,
+    createdDate: string,
+    participants: string[]
+}
+
 
 const UserEvents = () => {
 
-    let userAddress: Address = {
-        lat: 0,
-        lng: 0,
-        address: ""
-    }
+    const [events, setEvents] = useState<Event[]>([]);
 
-    const [userLocation, setUserLocation] = useState({latitude: userAddress.lat, longitude: userAddress.lng});
-    const [error, setError] = useState(null);
-    const [locationConfirmed, setLocationConfirmed] = useState(false);
-    
-    const getUserLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ latitude, longitude });
-                console.log("User location: ", latitude, longitude);
-            },
-            (error) => {
-                console.error("Error fetching user location: ", error);
-            }
-            );
-        } else {
-            console.log("Geolocation is not supported by this browser");
-        } 
-    };
-
-    const confirmLocation = () => {
-        console.log("userloca: ", userLocation.latitude, userLocation.longitude)
-        userAddress = {
-            lat: userLocation.latitude,
-            lng: userLocation.longitude,
-            address: ""
+    useEffect(() => {
+        const fetchEvents = async () => {
+            await axios.get('/events')
+            .then((res) => {
+                console.log(res.data);
+                setEvents(res.data);
+            })
+            .catch((err) => {
+                console.warn(err);
+                setError(err);
+            });
         }
-        setLocationConfirmed(true);
-    }
-
-    useMemo(() => {
-        getUserLocation();
-        confirmLocation();
-        
+        fetchEvents();
     }, []);
 
-    console.log("User address: ", userAddress);
+    const [err, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     return (
         <div className="page">
-            <Container>
+            <Container style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}>
                 <Row>
-                    { locationConfirmed ? (
-                        <EventMap {...userAddress} />
+                    { loading ? (
+                        <p style={{color: "var(--text-color)"}}>Loading...</p>
+                    ) : err ? (
+                        <p>{err}</p>
                     ) : (
-                        <p>Fetching location...</p>
-                    ) }
-                    
+                        <>
+                            <h1 className='text-center mt-3' style={{color: 'var(--text-color)'}}> Around you</h1>
+                            <EventMap {...events}/>
+                            <MDBContainer className="my-5" >
+                                <h2 className="mb-4" style={{color: "var(--text-color)"}}>Upcoming Events</h2>
+                                {events.map((event) => (
+                                    <MDBCard key={event._id} className="mb-3">
+                                        <MDBCardBody>
+                                            <MDBCardTitle>{event.title}</MDBCardTitle>
+                                            <MDBCardText>
+                                                Location: {event.location}
+                                                <br />
+                                                Date: {event.startDate}
+                                                <br />
+                                                Participants: {event.participants}
+                                            </MDBCardText>
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                ))}
+                            </MDBContainer>
+
+                            <MDBContainer className="my-5">
+                                <h2 className="mb-4" style={{color: "var(--text-color)"}}>Completed Events</h2>
+                                {events.map((event) => (
+                                    <MDBCard key={event._id} className="mb-3">
+                                        <MDBCardBody>
+                                            <MDBCardTitle>{event.title}</MDBCardTitle>
+                                            <MDBCardText>
+                                                Location: {event.location}
+                                                <br />
+                                                Date: {event.startDate}
+                                                <br />
+                                                Participants: {event.participants}
+                                            </MDBCardText>
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                ))}
+                            </MDBContainer>
+                        </>
+                    )}
                 </Row>
             </Container>
         </div>

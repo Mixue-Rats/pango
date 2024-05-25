@@ -1,14 +1,15 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
-
 import { useAuthContext } from '../hooks/useAuthContext';
 
-const NavBar = () => {
+import '../App.css'; // Make sure this imports your styles
 
+const NavBar = () => {
     const { logout } = useLogout();
     const navigate = useNavigate();
 
@@ -19,27 +20,25 @@ const NavBar = () => {
         }
     };
 
-  const { user } = useAuthContext();
-
-  console.log(user)
+    const { user } = useAuthContext();
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="navbar-custom">
         { user && user.user.role == "volunteer" ? (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/home">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/profile/volunteer">Profile</Nav.Link>
-                    <Nav.Link href="/events/volunteer">Events</Nav.Link>
-                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                    <Nav.Link href="/profile/volunteer" className="nav-link-custom">Profile</Nav.Link>
+                    <Nav.Link href="/events/volunteer" className="nav-link-custom">Events</Nav.Link>
+                    <Nav.Link onClick={handleLogout} className="nav-link-custom">Logout</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
         ) : user && user.user.role == "organisation" ? (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/profile/org">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -51,7 +50,7 @@ const NavBar = () => {
             </Container>
         ) : (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/home">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">

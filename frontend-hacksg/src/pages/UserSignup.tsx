@@ -17,7 +17,7 @@ const UserSignup = () => {
 
     const handleSignup = async (e: any) => {
         e.preventDefault();
-        await signup(name, email, password);
+        await signup(name.trim(), email.trim(), password);
     };
 
     return (
