@@ -8,7 +8,7 @@ Pango is our intuitive, gamified app that connects users to volunteering opportu
 - Backend: Nest.js, Node.js, FastAPI, Python
 - Databases: MongoDB, Redis
 - Machine Learning: SkLearn, HF-Transformers
-
+- DevOps: Postman, Docker, Railway, Git
 
 <img src="assets/full.png" alt="Techical Architecture">
 
