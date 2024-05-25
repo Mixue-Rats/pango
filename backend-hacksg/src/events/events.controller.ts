@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Res, HttpStatus } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { Event } from './events.schema'; 
+import { CreateEventDto } from './events.createeventdto';
 
 @Controller('events')
 export class EventsController {
@@ -14,7 +15,7 @@ export class EventsController {
   }
   // Only for organisations
   @Post()
-  async createEvent(@Res() response, @Body() createEventDto: any) {
+  async createEvent(@Res() response, @Body() createEventDto: CreateEventDto) {
     const result = await this.eventsService.createEvent(createEventDto);
     return response.status(HttpStatus.OK).json(result);
   }
