@@ -28,7 +28,7 @@ const HistoryPage: React.FC = () => {
                     return eventDate > today; // Keep only events that have passed
                 });
                 setEvents(filteredEvents);
-                console.log(filteredEvents);
+                console.log(filteredEvents);git
             } catch (error) {
                 console.warn(error);
                 setError("Failed to fetch events");
