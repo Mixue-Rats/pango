@@ -13,7 +13,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import withAuth from '../components/Auth';
 
 
-
+import '../App.css';
 
 const Home = () => {
     const { user } = useAuthContext();
@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
-            <h3 className='text-center mt-3' style={{color: 'var(--text-color)'}}>{currentLevel && currentLevel.title}</h3>
+            <h3 className='textcentermt3'>{currentLevel && currentLevel.title}</h3>
         <div className="progress">
         <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: `${(user.user.exp % 100)}%` }} aria-valuenow={user.user.exp} aria-valuemin={0} aria-valuemax={100}></div>
         </div>
@@ -54,8 +54,8 @@ const Home = () => {
             </Container >
             <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '0vh' }}>
             <Col xs={12} md={4} className="d-flex justify-content-center">
-                    <Button variant="secondary" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
-                    <Button variant="primary" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
+                    <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
+                    <Button variant="success" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
                     <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/history')}>History</Button>
                 </Col>
             </Container>

@@ -1,6 +1,6 @@
 :root {
   --primary-color: #ffffff; 
-  --secondary-color: #ffffff;
+  --secondary-color: #064420;
   --background-color: #ffffff; 
   --text-color: #000000; 
   --highlight-color: #e74c3c; /* Red for Highlights */
@@ -9,7 +9,55 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: 'Proxima Nova', sans-serif;
+  font-family: monospace;
+}
+
+.basic-navbar-nav {
+  background-color: #064420;
+  border-color: #bdffbd ;
+}
+
+.navbar-toggler{
+  background-color: #064420;
+}
+
+.navbar-toggler:hover {
+  background-color: #064420;
+}
+
+.basic-navbar-nav {
+  background-color: #064420;
+}
+
+.navbar-custom {
+  background-color: #064420;
+} 
+
+.navbar, .navbar-default {
+  background-color: #064420;
+}
+
+.homenav {
+  color : #FDFAF6;
+  font-family: monospace;
+}
+
+.nav-link-custom {
+  color : #FDFAF6;
+  font-family: monospace;
+}
+
+.navcontainer {
+  background-color:  #064420,
+}
+
+.textcentermt3 {
+  color: 'var(--text-color)';
+  padding-top:20px;
+  padding-bottom: 5px;
+  font-family: monospace;
+  flex: auto;
+  text-align: center;
 }
 
 /* Component specific styles */
@@ -64,10 +112,44 @@ body {
 }
 
 .custom-btn {
-  padding: 50px 20px;  /* Larger padding */
-  margin: 0 10px;      /* Custom spacing between buttons */
-  font-size: 18px;     /* Larger font size */
-  width: 120px;
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  font-family: 'monaco';
+  color: #064420;
+  margin: 5%;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.custom-btn:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.custom-btn:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
 * {
@@ -75,8 +157,8 @@ body {
 }
 
 body {
-  font-family: 'Proxima Nova', ;
-  background: #bdffbd;
+  font-family: monospace;
+  background: white;
 }
 
 .wrapper {
@@ -88,8 +170,8 @@ body {
   background: #fff;
   padding: 1rem;
   box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
-  
 }
+
 .polaroid > img{
   max-width: 100%;
   height: auto;
@@ -206,8 +288,10 @@ body {
     color: #666; /* Darker text for contrast */
 }
 
+
+
 button {
-    background-color: #4a90e2; /* Theme color */
+    background-color: #E4EFE7; /* Theme color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -218,5 +302,5 @@ button {
 }
 
 button:hover {
-    background-color: #357ABD; /* Slightly darker on hover */
+    background-color: #E4EFE7; /* Slightly darker on hover */
 }
