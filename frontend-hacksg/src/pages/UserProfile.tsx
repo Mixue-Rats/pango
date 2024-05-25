@@ -54,7 +54,7 @@ const UserProfile = () => {
                   </MDBCardBody>
                 </MDBCard>
     
-                <MDBCard className="mb-4 mb-lg-0">
+                {/* <MDBCard className="mb-4 mb-lg-0">
                   <MDBCardBody className="p-0">
                     <MDBListGroup flush className="rounded-3">
                       <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
@@ -75,7 +75,7 @@ const UserProfile = () => {
                       </MDBListGroupItem>
                     </MDBListGroup>
                   </MDBCardBody>
-                </MDBCard>
+                </MDBCard> */}
               </MDBCol>
               <MDBCol lg="8">
                 <MDBCard className="mb-4">
@@ -127,7 +127,7 @@ const UserProfile = () => {
                   </MDBCardBody>
                 </MDBCard>
     
-                <MDBRow>
+                {/* <MDBRow>
                   <MDBCol md="6">
                     <MDBCard className="mb-4 mb-md-0">
                       <MDBCardBody>
@@ -161,7 +161,7 @@ const UserProfile = () => {
                   </MDBCol>
     
     
-                </MDBRow>
+                </MDBRow> */}
               </MDBCol>
             </MDBRow>
           </MDBContainer>
