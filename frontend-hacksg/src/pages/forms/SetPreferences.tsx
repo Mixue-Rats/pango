@@ -1,7 +1,8 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Container, Form, Button, Col } from 'react-bootstrap';
 
-const SetPreferences = () => {
+const SetPreferences = (props: any) => {
 
     const _preferredVolunteerType = ['Environmental', 'Animal', 'Social', 'Healthcare'];
     const _skills = ['Leadership', 'Communication', 'Technical', 'Organizational', 'Creativity', 'Problem Solving', 'Teamwork'];
@@ -17,11 +18,27 @@ const SetPreferences = () => {
 
     const paragraph = preferredVolunteerType + " " + skills + " " + personalityTraits + " " + preferredDays + " " + preferredLocation + " " + additionalPreferences;
 
-    const handleSubmit = () => {
-        console.log("result: ", paragraph);
+    const handleSubmit = async () => {
+        await axios.post('/api/v1/user/prefs', {
+            email: props.email,
+            preferredVolunteerType: preferredVolunteerType,
+            skills: skills,
+            personalityTraits: personalityTraits,
+            preferredDays: preferredDays,
+            preferredLocation: preferredLocation,
+            additionalPreferences: paragraph
+        })
+        .then((res) => {
+            console.log(res.data);
+
+        })
+        .catch((err) => {
+            console.warn(err);
+        });
     }
 
     return (
+        <div className='page'>
         <Container>
             <h2 className='py-3'>Set Volunteer Preferences</h2>
             <Form> 
@@ -69,6 +86,7 @@ const SetPreferences = () => {
             </Form>
             <div className='my-5'></div>
         </Container>
+        </div>
     );
 };
 

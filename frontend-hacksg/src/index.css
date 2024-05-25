@@ -24,3 +24,32 @@ code {
   white-space: nowrap;
   padding: 10px;
 }
+
+.userTypeCard {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transform: translateY(0px);
+  transition: 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 10px 0px darkgray;
+    transform: translateY(-3px);
+    transition: 0.2s ease-in-out;
+    background-color: lightcyan;
+  };
+}
+
+.largeCard {
+  cursor: pointer;
+  transform: translateY(0px);
+  transition: 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 6px 0px darkgray;
+    transform: translateY(-2px);
+    transition: 0.2s ease-in-out;
+  };
+}
+
+
+
