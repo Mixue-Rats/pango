@@ -15,10 +15,14 @@ class EventEntry(BaseModel):
     event_id : str = None
     desc : str = None
 
-class CurrentState(BaseModel):
+
+# class CurrentState(BaseModel):
+#     event_key : int = None
+
+class TotalState(BaseModel):
     click_map : dict = None
-    dist_map : dict = None
-    t : int = None
+    # dist_map : dict = None
+    # t : int = None
 
 app = FastAPI()
 router = APIRouter()
@@ -47,10 +51,11 @@ async def addevent(event: EventEntry):
     return "Added Event : {}".format(event.event_id)
 
 @router.post("/recommend/", response_model=list[str])
-async def recommend(cstate : CurrentState):
-    status, resp = server_wrapper.get_reccomendation(cstate.click_map, 
-                                            cstate.dist_map,
-                                            cstate.t)
+async def recommend(cstate : TotalState):
+    cm = cstate.click_map
+
+    t = sum(cm.values())
+    status, resp = server_wrapper.get_recommendation(cstate.click_map, t)
     if status:
         raise HTTPException(status_code=400, detail=resp)
     return resp
