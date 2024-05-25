@@ -44,3 +44,16 @@ class EmbeddingModel:
         else:
             raise NotImplementedError
         return s_
+    
+    def create_pool(self, 
+                    u_emb : np.array, 
+                    a_embs : dict) -> list:
+        scores = {}
+        for k, v in a_embs.items():
+            scores[k] = self.score(u_emb, v)
+        scores = sorted(scores.items(), key=lambda x : x[1], reverse=True)
+        scores = [x[0] for x in scores]
+        if len(scores) > self.k:
+            return scores[:self.k]
+        else:
+            return scores
