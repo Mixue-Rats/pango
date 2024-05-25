@@ -40,7 +40,7 @@ const Home = () => {
         return pangoLevels.slice().reverse().find(level => exp >= level.expThreshold);
     };
     
-    const currentLevel = getCurrentLevel(user.exp || 0);
+    const currentLevel = getCurrentLevel(user.user.exp || 0);
 
     return (
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
