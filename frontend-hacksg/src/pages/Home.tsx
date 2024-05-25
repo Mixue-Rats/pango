@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
 // Importing the image from local assets directory
-import image from './assets/images/test.png';  // Adjust the path as necessary
+import image from '../assets/images/test.png';  // Adjust the path as necessary
 
 const Home = () => {
     return (
