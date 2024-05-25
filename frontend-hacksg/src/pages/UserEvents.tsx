@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import EventMap from '../components/Map';
+import EventMap from '../components/EventMap';
 import Address from '../types/Address';
 
 const UserEvents = () => {
@@ -12,54 +12,44 @@ const UserEvents = () => {
     }
 
     const [userLocation, setUserLocation] = useState({latitude: userAddress.lat, longitude: userAddress.lng});
-    const [error, setError] = useState(null);
-    const [locationConfirmed, setLocationConfirmed] = useState(false);
+    const [err, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     
-    const getUserLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ latitude, longitude });
-                console.log("User location: ", latitude, longitude);
-            },
-            (error) => {
-                console.error("Error fetching user location: ", error);
-            }
-            );
-        } else {
-            console.log("Geolocation is not supported by this browser");
-        } 
-    };
-
-    const confirmLocation = () => {
-        console.log("userloca: ", userLocation.latitude, userLocation.longitude)
-        userAddress = {
-            lat: userLocation.latitude,
-            lng: userLocation.longitude,
-            address: ""
-        }
-        setLocationConfirmed(true);
-    }
-
-    useMemo(() => {
-        getUserLocation();
-        confirmLocation();
-        
+    useEffect(() => {
+        (() => {
+            setLoading(true);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setUserLocation({ latitude, longitude });
+                    setLoading(false);
+                    console.log("User location: ", latitude, longitude);
+                },
+                (error) => {
+                    setError(error.message);
+                    console.error("Error fetching user location: ", error);
+                }
+                );
+            } else {
+                console.log("Geolocation is not supported by this browser");
+            } 
+        })()
     }, []);
 
-    console.log("User address: ", userAddress);
+    console.log("User address: ", userLocation);
 
     return (
         <div className="page">
             <Container>
                 <Row>
-                    { locationConfirmed ? (
-                        <EventMap {...userAddress} />
+                    { loading ? (
+                        <p>Loading...</p>
+                    ) : err ? (
+                        <p>{err}</p>
                     ) : (
-                        <p>Fetching location...</p>
-                    ) }
-                    
+                        <EventMap lat={userLocation.latitude} lng={userLocation.longitude} address=""/>
+                    )}
                 </Row>
             </Container>
         </div>

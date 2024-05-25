@@ -1,4 +1,4 @@
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { Container, Row } from 'react-bootstrap';
 
 import Address from '../types/Address';
@@ -17,7 +17,9 @@ const EventMap = ({lat, lng}: Address) => {
                         defaultZoom={12}
                         gestureHandling={'greedy'}
                         disableDefaultUI={true}
-                    />
+                    >
+                        <Marker position={{lat, lng}} />
+                    </Map>
                 </APIProvider>
             </Row>
         </Container>

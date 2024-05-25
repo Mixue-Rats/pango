@@ -37,7 +37,7 @@ export const useLogin = () => {
             // Update auth context
             dispatch({type : 'LOGIN', payload : json})
             setLoading(false)
-            navigate('/')
+            navigate('/home')
         }
     }
     return {login, isLoading, error}
