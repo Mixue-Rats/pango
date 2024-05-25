@@ -13,10 +13,10 @@ const TabContainer = ({events}: EventsListProps) => {
     const [key, setKey] = useState('recommendations');
 
     return (
-        <Container className="p-3 mt-1">
-            <Container className='my-2'>
+        <Container className="p-3 mt-1" style={{backgroundColor:'smokewhite'}}>
+            <Container className='my-2' style={{backgroundColor:'smokewhite'}}>
                 { key === "recommendations" ? (
-                    <Row>
+                    <Row style={{backgroundColor:'smokewhite'}}>
                         <Col xs={2} md={1} className='d-flex flex-row justify-content-start'>
                             <img src={robopango} alt="RoboPango" width="70" height="70"/>
                         </Col>
@@ -25,7 +25,7 @@ const TabContainer = ({events}: EventsListProps) => {
                         </Col>
                     </Row>
                 ) : (
-                    <Row> 
+                    <Row style={{backgroundColor:'smokewhite'}}> 
                         <Col xs={2} md={1} className='d-flex flex-row justify-content-center align-items-center'>
                             <img src={red_pin} alt="red pin" width="60" height="50" style={{padding:"1"}}/>
                         </Col>

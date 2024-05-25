@@ -157,8 +157,8 @@ body {
 }
 
 body {
-  font-family: 'Proxima Nova', ;
-  background: #bdffbd;
+  font-family: monospace;
+  background: white;
 }
 
 .wrapper {
