@@ -6,6 +6,8 @@ import LargeCard from './LargeCard';
 import robopango from '../assets/images/robo_pango.png'
 import red_pin from '../assets/images/red-pin.png'
 
+import "../App.css"
+
 const TabContainer = ({events}: EventsListProps) => {
 
     const [key, setKey] = useState('recommendations');
@@ -16,19 +18,19 @@ const TabContainer = ({events}: EventsListProps) => {
                 { key === "recommendations" ? (
                     <Row>
                         <Col xs={2} md={1} className='d-flex flex-row justify-content-start'>
-                            <img src={robopango} alt="RoboPango" width="50" height="60"/>
+                            <img src={robopango} alt="RoboPango" width="70" height="70"/>
                         </Col>
                         <Col className='d-flex flex-row justify-content-center align-items-center'>
-                            <p className='alert alert-dark'>Powered by AI, here are RoboPango's recommendations for you!</p>
+                            <p className='alert alert-dark' style={{backgroundColor:'whitesmoke', color:'black', fontSize:'10px'}}>Powered by AI, here are RoboPango's recommendations for you!</p>
                         </Col>
                     </Row>
                 ) : (
                     <Row> 
                         <Col xs={2} md={1} className='d-flex flex-row justify-content-center align-items-center'>
-                            <img src={red_pin} alt="red pin" width="50" height="50" style={{padding:"2"}}/>
+                            <img src={red_pin} alt="red pin" width="60" height="50" style={{padding:"1"}}/>
                         </Col>
                         <Col className='d-flex flex-row justify-content-center align-items-center'>
-                            <p className='alert alert-dark'>Want something near? Check out opportunities near you!</p>
+                            <p className='alert alert-dark' style={{backgroundColor:'whitesmoke', color:'black', fontSize:'10px'}}>Want something near? Check out opportunities near you!</p>
                         </Col>
                     </Row>
                 )}

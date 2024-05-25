@@ -10,7 +10,7 @@ import redcrossBadge from '../assets/images/achievements/redcross_achievement.pn
 const imageMap = {
     "Red Cross!": redcrossBadge,
     "Animal Lover": animalBadge,
-    "Saving the Beach!": beachBadge,
+    "Bay Watch!": beachBadge,
     "Helping Ah Ma!": elderlyBadge,
     // Add more mappings as needed
 };
