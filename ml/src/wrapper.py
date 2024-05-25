@@ -35,12 +35,11 @@ class MLServer:
         
         return (False, None)
 
-    def get_reccomendation(self, 
-                           user_click_map : dict, 
-                           distance_map : dict, 
+    def get_recommendation(self, 
+                           user_click_map : dict,
                            t : int) -> tuple:
         try:
-            ret = self.policy.get_recommendation(user_click_map, distance_map, t)
+            ret = self.policy.get_recommendation(user_click_map, t)
         except Exception as e:
             return (True, repr(e))
         return (False, ret)
