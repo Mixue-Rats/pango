@@ -93,7 +93,11 @@ const UserProfile = () => {
                         <MDBCardText>Full Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{user.user.fullname}</MDBCardText>
+                        { user ? (
+                          <MDBCardText className="text-muted">{user.user.fullname}</MDBCardText>
+                        ) : (
+                          <MDBCardText className="text-muted">Name not found</MDBCardText>
+                        )}
                       </MDBCol>
                     </MDBRow>
                     <hr />
@@ -102,7 +106,11 @@ const UserProfile = () => {
                         <MDBCardText>Email</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{user.user.email}</MDBCardText>
+                      { user ? (
+                          <MDBCardText className="text-muted">{user.user.email}</MDBCardText>
+                        ) : (
+                          <MDBCardText className="text-muted">Email not found</MDBCardText>
+                        )}
                       </MDBCol>
                     </MDBRow>
                     <hr />
