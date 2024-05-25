@@ -7,7 +7,6 @@ class BanditPolicy:
                  weigh_dist=True,
                  beta=0.7
                  ):
-        
         self.alpha_0_phi = 1
         self.alpha_1_phi = 1
         self.weigh_dist = weigh_dist
