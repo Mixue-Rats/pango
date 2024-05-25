@@ -22,7 +22,7 @@ const HistoryPage: React.FC = () => {
             today.setHours(0, 0, 0, 0); // Set today date to start of the day
 
             try {
-                const res = await axios.get(`/joinedByUser/${user.email}`);
+                const res = await axios.get(`/joinedByUser/${user.user.email}`);
                 const filteredEvents = res.data.filter((event: Event) => {
                     const eventDate = new Date(event.startDateTime);
                     return eventDate > today; // Keep only events that have passed
