@@ -4,9 +4,11 @@ import { EventsController } from './events.controller';
 import { EventsService } from './events.service';
 import { Event, EventSchema } from './events.schema';
 import { User, UserSchema } from '../user/user.schema';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
+    HttpModule,
     MongooseModule.forFeature([{ name: Event.name, schema: EventSchema }, { name: User.name, schema: UserSchema }]),
   ],
   controllers: [EventsController],

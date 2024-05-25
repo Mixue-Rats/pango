@@ -15,10 +15,12 @@ import { join } from 'path/posix';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
+import { HttpModule } from '@nestjs/axios';
 import { isAuthenticated } from './app.middleware';
 
 @Module({
   imports: [ 
+    HttpModule,
     MongooseModule.forRoot('mongodb://localhost:27017/volunteer'),
     EventsModule,
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }, 
