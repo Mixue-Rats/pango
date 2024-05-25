@@ -16,8 +16,14 @@ import {
     MDBListGroupItem
   } from 'mdb-react-ui-kit';
 
+  import { useAuthContext } from '../hooks/useAuthContext';
+  
+
 
 const UserProfile = () => {
+  const { user } = useAuthContext();
+
+
     return (
         <section style={{ backgroundColor: '#eee' }}>
           <MDBContainer className="py-5">
@@ -41,7 +47,7 @@ const UserProfile = () => {
                   <MDBCardBody className="text-center">
                     <MDBCardImage
                       src="https://commons.wikimedia.org/wiki/File:Singapore_Red_Cross.jpg#/media/File:Singapore_Red_Cross.jpg"
-                      alt="Shuheng face"
+                      alt=""
                       className="rounded-circle"
                       style={{ width: '150px' }}
                       fluid />
@@ -85,7 +91,7 @@ const UserProfile = () => {
                         <MDBCardText>Full Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">Yeo Shu Heng</MDBCardText>
+                        <MDBCardText className="text-muted">{user.fullname}</MDBCardText>
                       </MDBCol>
                     </MDBRow>
                     <hr />
@@ -94,20 +100,20 @@ const UserProfile = () => {
                         <MDBCardText>Email</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                        <MDBCardText className="text-muted">{user.email}</MDBCardText>
                       </MDBCol>
                     </MDBRow>
                     <hr />
                     <MDBRow>
                       <MDBCol sm="3">
-                        <MDBCardText>Phone</MDBCardText>
+                        <MDBCardText>Contact</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
+                        <MDBCardText className="text-muted">(65) 98765432</MDBCardText>
                       </MDBCol>
                     </MDBRow>
                     <hr />
-                    <MDBRow>
+                    {/* <MDBRow>
                       <MDBCol sm="3">
                         <MDBCardText>Mobile</MDBCardText>
                       </MDBCol>
@@ -115,7 +121,7 @@ const UserProfile = () => {
                         <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
                       </MDBCol>
                     </MDBRow>
-                    <hr />
+                    <hr /> */}
                     <MDBRow>
                       <MDBCol sm="3">
                         <MDBCardText>Address</MDBCardText>

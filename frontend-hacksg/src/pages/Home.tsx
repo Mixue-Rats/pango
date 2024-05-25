@@ -14,12 +14,18 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const Home = () => {
-    // const { user } = useAuthContext();
-    const user = { exp: 320, achievements: ["Red Cross!", "Animal Lover", "Saving the Beach!", "Helping Ah Ma!"]  };
+    const { user } = useAuthContext();
+    // const user = { exp: 320, achievements: ["Red Cross!", "Animal Lover", "Saving the Beach!", "Helping Ah Ma!"]  };
     const navigate = useNavigate();  // Hook for navigation
     const handleNavigate = (path: string) => {
         navigate(path);  // Function to redirect to specified path
     };
+    
+    
+    if (!user) {
+        navigate('/login/volunteer');
+        return null; // Stop execution if no user
+    }
 
     const pangoLevels = [
         { expThreshold: 0, image: pango, title: 'Level 1: Baby Pango' },
@@ -28,13 +34,13 @@ const Home = () => {
         { expThreshold: 300, image: pango4, title: 'Level 4: Super Pango' },
     ];
 
-
+    
     const getCurrentLevel = (exp: number) => {
         // Find the current level based on experience
         return pangoLevels.slice().reverse().find(level => exp >= level.expThreshold);
     };
-
-    const currentLevel = getCurrentLevel(user.exp);
+    
+    const currentLevel = getCurrentLevel(user.exp || 0);
 
     return (
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
@@ -52,13 +58,13 @@ const Home = () => {
             <Container className='d-flex justify-content-center align-items-center' style={{ minHeight: '0vh' }}>
             <Col xs={12} md={4} className="d-flex justify-content-center">
                     <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/events/volunteer')}>Search</Button>
-                    <Button variant="primary" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
-                    <Button variant="secondary" className="custom-btn" onClick={() => handleNavigate('/history')}>History</Button>
+                    <Button variant="success" className="custom-btn"onClick={() => handleNavigate('/upcoming')}>Upcoming</Button>
+                    <Button variant="success" className="custom-btn" onClick={() => handleNavigate('/history')}>History</Button>
                 </Col>
             </Container>
             <Row>
                 <Col>
-                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: {user.achievements.length}</h4>
+                <h4 className='text-center mt-3' style={{color: 'var(--text-color)'}}>Achievements: {user.achievements ? user.achievements.length : 0}</h4>
                 <AchievementsGrid user={user}/>    
                 </Col>
             </Row>

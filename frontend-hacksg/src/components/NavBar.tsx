@@ -31,7 +31,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/profile/volunteer" className="nav-link-custom">Profile</Nav.Link>
-                    <Nav.Link href="/events/volunteer" className="nav-link-custom">Events</Nav.Link>
+                    {/* <Nav.Link href="/events/volunteer" className="nav-link-custom">Events</Nav.Link> */}
                     <Nav.Link onClick={handleLogout} className="nav-link-custom">Logout</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
@@ -43,7 +43,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/profile/org">Profile</Nav.Link>
-                    <Nav.Link href="/events/org">Events</Nav.Link>
+                    {/* <Nav.Link href="/events/org">Events</Nav.Link> */}
                     <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>

@@ -32,6 +32,7 @@ const HistoryPage: React.FC = () => {
             } catch (error) {
                 console.warn(error);
                 setError("Failed to fetch events");
+                
             }
         };
 
