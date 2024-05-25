@@ -27,7 +27,7 @@ const NavBar = () => {
     <Navbar expand="lg" className="bg-body-tertiary">
         { user && user.user.role == "volunteer" ? (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -39,7 +39,7 @@ const NavBar = () => {
             </Container>
         ) : user && user.user.role == "organisation" ? (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -51,7 +51,7 @@ const NavBar = () => {
             </Container>
         ) : (
             <Container>
-                <Navbar.Brand href="/">frontend</Navbar.Brand>
+                <Navbar.Brand href="/">Pango</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
