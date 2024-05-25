@@ -31,6 +31,27 @@ export class UserService {
         };
         // return User + Token based on discussion
     }
+    async signuporg(user: User, jwt: JwtService): Promise<any> {
+        const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(user.password, salt);
+        const reqBody = {
+            fullname: user.fullname,
+            email: user.email,
+            password: hash,
+            role: 'organisation'
+        }
+        const newUser = new this.userModel(reqBody);
+        const savedUser = await newUser.save();
+
+        const payload = { email: savedUser.email };
+        const token = jwt.sign(payload);
+
+        return {
+            user: savedUser,
+            token: token,
+        };
+        // return User + Token based on discussion
+    }
     async signin(user: User, jwt: JwtService): Promise<any> {
         const foundUser = await this.userModel.findOne({ email: user.email }).exec();
         if (foundUser) {
