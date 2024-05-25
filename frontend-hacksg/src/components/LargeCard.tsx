@@ -12,17 +12,24 @@ import kids from '../assets/images/thumbnails/kids.png'
 import elderly_help from '../assets/images/thumbnails/elderly-help.png'
 import volunteer from '../assets/images/thumbnails/volunteer-1.png'
 
+const imageMap = {
+    'beach_cleanup': beach_cleanup,
+    'default': default_img,
+    'food_drive': food_drive,
+    'kids': kids,
+    'elderly_help': elderly_help,
+    'volunteer': volunteer
+}
 
 const LargeCard = ({...event}: Event) => {
 
     const [modalShow, setModalShow] = useState(false);
-    const pic = import(`../assets/images/thumbnails/${event.image}`)
 
     return (
         <>
             <Card onClick={() => setModalShow(true)} className='largeCard' style={{ width: '18rem', height: '20rem', maxHeight: '18rem'}}>
                 <Card.Body>
-                    <Card.Img className='mb-2 rounded' variant="top" src={default_img} width='100' height='140'/>
+                    <Card.Img className='mb-2 rounded' variant="top" src={imageMap[event.image as keyof typeof imageMap]} width='100' height='140'/>
                     <Card.Title className="h4 mb-3">{event.title}</Card.Title>
                     <Card.Subtitle className='mb-2'>Date: {getDate(event.startDateTime)}</Card.Subtitle>
                     <Card.Subtitle className='mb-2'>From {getTime(event.startDateTime)} to {getTime(event.endDateTime)}</Card.Subtitle>
