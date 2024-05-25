@@ -6,7 +6,7 @@ const Footer = () => {
             <Container>
                 <Row>
                     <Col>
-                        <p>© 2021 frontend</p>
+                        <p>© 2024 Mixue Rats</p>
                     </Col>
                 </Row>
             </Container>

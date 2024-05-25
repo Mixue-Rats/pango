@@ -4,13 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css'; 
 
 // Importing the image from local assets directory
-
 import pango from '../assets/images/pango_lvl1.png';  
 import pango2 from '../assets/images/pango_lvl2.png';
 import pango3 from '../assets/images/pango_lvl3.png';
 import pango4 from '../assets/images/pango_lvl4.png';
 import AchievementsGrid from '../components/Achievements';
-
 
 
 const Home = () => {
