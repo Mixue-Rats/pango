@@ -1,3 +1,29 @@
+:root {
+  --primary-color: #B0EBB4; 
+  --secondary-color: #BFF6C3;
+  --background-color: #ACE1AF; 
+  --text-color: #000000; 
+  --highlight-color: #e74c3c; /* Red for Highlights */
+}
+/* Global body styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Component specific styles */
+.header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.footer {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+
 .App {
   text-align: center;
 }

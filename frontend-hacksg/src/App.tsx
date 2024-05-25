@@ -32,7 +32,7 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <div className="pages">
+        <div className="pages" >
           <Routes>
             <Route path="/" element={<UserEvents />} />
             <Route path="/selectUserType" element={<SelectUserType />} />
