@@ -17,6 +17,13 @@ export class UserController {
             newUser
         })
     }
+    @Post('/signuporg')
+    async Signuporg(@Res() response, @Body() user: User) {
+        const newUser = await this.userService.signuporg(user, this.jwtService);
+        return response.status(HttpStatus.CREATED).json({
+            newUser
+        })
+    }
     @Post('/signin')
     async SignIn(@Res() response, @Body() user: User) {
         const token = await this.userService.signin(user, this.jwtService);
