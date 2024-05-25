@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { Event, EventDocument } from './events.schema';  // Import your Event schema
 import { User, UserDocument } from '../user/user.schema';  // If you need to handle users
 import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class EventsService {
@@ -55,10 +56,60 @@ export class EventsService {
     const newEvent = new this.eventModel(createEventDto);
     const payload = {
       "desc": newEvent.desc,
-      "id": newEvent._id
+      "event_id": newEvent._id
     }
-    const result = await this.httpService.post(process.env.IP + "8000/addevent", payload);
-    console.log(result);
+    try {
+      const result = await firstValueFrom(this.httpService.post(`http://localhost:8000/addevent`, payload));
+      console.log('Status:', result.status);
+      console.log('Headers:', result.headers);
+      console.log('Data:', result.data);
+    } catch (error) {
+        console.error('Error status:', error.response?.status);
+        console.error('Error data:', error.response?.data);
+        throw error;
+    }
     return newEvent.save();
   }
+
+  async click(clickDto: any) {
+    const { userId, eventId } = clickDto;
+    const event = await this.eventModel.findById(eventId).exec();
+    if (event) {
+        if (event.clicks.has(userId)) {
+            // Increment the click count for the existing userId
+            event.clicks.set(userId, event.clicks.get(userId) + 1);
+        } else {
+            // Initialize the click count for the new userId
+            event.clicks.set(userId, 1);
+        }
+        // Save the updated event document
+        await event.save();
+        return event;
+    } else {
+        throw new Error('Event not found');
+    }
+  }
+
+  async recommend(userId: string) {
+    const events = await this.eventModel.find().exec();
+    const clickCounts = {};
+
+    events.forEach(event => {
+      console.log(event._id)
+      console.log(event.clicks.has(userId))
+      if (event.clicks.has(userId)) {
+        clickCounts[event._id.toString()] = event.clicks.get(userId);
+      }
+    });
+
+    console.log(clickCounts);
+
+    // Post the clickCounts dictionary to the recommendation service
+    const url = 'http://localhost:8000/recommend';
+    const response = await firstValueFrom(this.httpService.post(url, clickCounts));
+
+    return response.data;
+  }
 }
+
+
