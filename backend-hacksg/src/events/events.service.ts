@@ -4,12 +4,14 @@ import { CreateEventDto } from './events.createeventdto';
 import { Model } from 'mongoose';
 import { Event, EventDocument } from './events.schema';  // Import your Event schema
 import { User, UserDocument } from '../user/user.schema';  // If you need to handle users
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class EventsService {
   constructor(
     @InjectModel(Event.name) private eventModel: Model<EventDocument>,
-    @InjectModel(User.name) private userModel: Model<UserDocument>
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    private readonly httpService: HttpService
   ) {}
 
   async findAll(): Promise<Event[]> {
@@ -51,6 +53,12 @@ export class EventsService {
     }
 
     const newEvent = new this.eventModel(createEventDto);
+    const payload = {
+      "desc": newEvent.desc,
+      "id": newEvent._id
+    }
+    const result = await this.httpService.post(process.env.IP + "8000/addevent", payload);
+    console.log(result);
     return newEvent.save();
   }
 }

@@ -5,11 +5,13 @@ import { User, UserDocument } from "./user.schema";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Prefs, PrefsDocument } from "./prefs.schema";
+import { HttpService } from "@nestjs/axios";
 
 @Injectable()
 export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(Prefs.name) private prefsModel: Model<PrefsDocument>
+    @InjectModel(Prefs.name) private prefsModel: Model<PrefsDocument>,
+    private readonly httpService: HttpService
     ) { }
     async signup(user: User, jwt: JwtService): Promise<any> {
         const salt = await bcrypt.genSalt();
@@ -87,6 +89,16 @@ export class UserService {
             { prefs: updatedPrefs._id },  // Assuming the User schema has a reference to Prefs
             { new: true }
         ).exec();
+        const payload = {
+            "email": updatedPrefs.email,
+            "preferredVolunteerType": updatedPrefs.preferredVolunteerType,
+            "skills": updatedPrefs.skills,
+            "personalityTraits": updatedPrefs.personalityTraits,
+            "additionalPreferences": updatedPrefs.additionalPreferences
+        }
+
+        const result = await this.httpService.post(process.env.IP + "8000/adduser", payload);
+        console.log(result);
 
         return updatedUser;
     }

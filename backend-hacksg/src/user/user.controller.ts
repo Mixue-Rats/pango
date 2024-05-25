@@ -4,6 +4,7 @@ import { Prefs } from "./prefs.schema";
 import { UserService } from "./user.service";
 import { JwtService } from '@nestjs/jwt'
 
+
 @Controller('/api/v1/user')
 export class UserController {
     constructor(private readonly userService: UserService,
