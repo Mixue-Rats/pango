@@ -11,7 +11,7 @@ import pango4 from '../assets/images/pango_lvl4.png';
 import AchievementsGrid from '../components/Achievements';
 import { useAuthContext } from '../hooks/useAuthContext';
 
-
+import '../App.css';
 
 const Home = () => {
     const { user } = useAuthContext();
@@ -39,7 +39,7 @@ const Home = () => {
 
     return (
         <div className='page' style={{ backgroundColor: 'var(--primary-color)', color: 'var(--secondary-color)' }}> 
-            <h3 className='text-center mt-3' style={{color: 'var(--text-color)'}}>{currentLevel && currentLevel.title}</h3>
+            <h3 className='textcentermt3'>{currentLevel && currentLevel.title}</h3>
         <div className="progress">
         <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: `${(user.user.exp % 100)}%` }} aria-valuenow={user.user.exp} aria-valuemin={0} aria-valuemax={100}></div>
         </div>
