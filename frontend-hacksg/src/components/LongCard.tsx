@@ -7,7 +7,7 @@ import kids from '../assets/images/thumbnails/kids.png'
 
 const LongCard = (event: Event) => {
     return (
-        <Card style={{ width: '25rem', height: '20rem', maxHeight: '18rem'}}>
+        <Card className='longCard' style={{ width: '25rem', height: '20rem', maxHeight: '18rem'}}>
             <Card.Body>
                 <Card.Img className='mb-2 rounded' variant="top" src={kids} width='170' height='140'/>
                 <Card.Title className="h4 mb-3">{event.title}</Card.Title>

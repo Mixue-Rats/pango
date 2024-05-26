@@ -42,7 +42,7 @@ const TabContainer = (props: any) => {
                 justify activeKey={key} 
                 onSelect={(k) => setKey(k as string)}
             >
-                <Tab eventKey="recommendations" title="RoboPango's Recommendations">
+                <Tab eventKey="recommendations" title="RoboPango's Recommendations" style={{color:'#064420'}}>
                     <div className="horizontal-scroll">
                         { props.events && props.events.length != 0 ? (props.events
                             .filter((event: Event) => new Date(event.endDateTime).getTime() >= Date.now())
