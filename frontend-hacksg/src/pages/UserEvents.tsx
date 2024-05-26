@@ -69,7 +69,7 @@ const UserEvents = () => {
                     { loading ? (
                             <div className="alert alert-primary">Loading</div>
                         ) : error ? (
-                            <div className="alert alert-danger">{error}</div>
+                            <div className="alert alert-danger">Could not load map.</div>
                         ) : (
                             <EventMap events={events} lat={userLocation.latitude} lng={userLocation.longitude}/>
                         )
