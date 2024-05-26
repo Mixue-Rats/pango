@@ -23,7 +23,7 @@ const UserSignup = () => {
     const [waiting, setWaiting] = useState(false);
 
     const handleSubmit = async () => {
-        await axios.post('/api/v1/user/prefs', {
+        await axios.post('https://terrific-forgiveness-production.up.railway.app/api/v1/user/prefs', {
             email: email,
             preferredVolunteerType: preferredVolunteerType,
             skills: skills,

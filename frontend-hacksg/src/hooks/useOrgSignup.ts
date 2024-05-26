@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const signupPath = '/api/v1/user/signuporg';
+const signupPath = 'https://terrific-forgiveness-production.up.railway.app/api/v1/user/signuporg';
 
 // Once a user signs up, user is also logged in.
 export const useOrgSignup = () => {
