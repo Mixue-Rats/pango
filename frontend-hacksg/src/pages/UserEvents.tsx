@@ -17,9 +17,8 @@ const UserEvents = () => {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            await axios.get('/events')
+            await axios.get('https://terrific-forgiveness-production.up.railway.app/events')
             .then((res) => {
-                console.log(res.data);
                 setEvents(res.data);
             })
             .catch((err) => {

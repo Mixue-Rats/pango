@@ -34,7 +34,7 @@ const EventModal = (props: any) => {
     const handleJoinEvent = async (user: any, event: any) => {
         console.log('Joining event: ', event);
         setLoading(true);
-        await axios.post('/events/join', {
+        await axios.post('https://terrific-forgiveness-production.up.railway.app/events/join', {
             userEmail: user.user.email,
             eventId: event._id
         })

@@ -19,7 +19,7 @@ const SetPreferences = (props: any) => {
     const paragraph = preferredVolunteerType + " " + skills + " " + personalityTraits + " " + preferredDays + " " + preferredLocation + " " + additionalPreferences;
 
     const handleSubmit = async () => {
-        await axios.post('/api/v1/user/prefs', {
+        await axios.post('https://terrific-forgiveness-production.up.railway.app/api/v1/user/prefs', {
             email: props.email,
             preferredVolunteerType: preferredVolunteerType,
             skills: skills,
