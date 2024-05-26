@@ -40,6 +40,5 @@ export const useLogin = () => {
             navigate('/home')
         }
     }
-    console.log({login, isLoading, error})
     return {login, isLoading, error}
 }

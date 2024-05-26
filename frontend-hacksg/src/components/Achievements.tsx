@@ -28,7 +28,7 @@ const AchievementsGrid = ({ user }: { user: { achievements: any[] } }) => {
     return (
         <div className="wrapper">
             {user.achievements && user.achievements.map((achievement: any) => (
-                <div key={achievement.id} className="item">
+                <div key={user.achievements.indexOf(achievement)} className="item">
                     <div className="polaroid">
                         <img src={imageMap[achievement as keyof typeof imageMap] || 'defaultImagePath'}  alt={achievement.title} />
                         <div className="caption" style={{ color: 'black' ,fontSize: '14px'}}>{achievement}</div>
