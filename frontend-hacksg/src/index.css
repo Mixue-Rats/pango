@@ -48,6 +48,33 @@ code {
     box-shadow: 0px 0px 6px 0px darkgray;
     transform: translateY(-2px);
     transition: 0.2s ease-in-out;
+    background-color: #E4EFE7;
+    color: #064420;
+  };
+}
+
+.longCard {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 6px 0px darkgray;
+    transform: translateY(-2px);
+    transition: 0.2s ease-in-out;
+    background-color: #E4EFE7;
+    color: #064420;
+  };
+}
+
+.largeCard {
+  cursor: pointer;
+  transform: translateY(0px);
+  transition: 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 6px 0px darkgray;
+    transform: translateY(-2px);
+    transition: 0.2s ease-in-out;
+    background-color: #E4EFE7;
+    color: #064420;
   };
 }
 
