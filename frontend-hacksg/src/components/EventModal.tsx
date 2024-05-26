@@ -84,7 +84,7 @@ const EventModal = (props: any) => {
                 </Row>
                 <Row>
                     <Col>
-                        <em>📍 {props.volunteer_event.location || "Address not available."}</em>
+                        <em>📍 {props.volunteer_event.address || "Address not available."}</em>
                     </Col>
                 </Row>
                 <Row className='mt-3'>

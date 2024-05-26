@@ -30,7 +30,6 @@ const SetPreferences = (props: any) => {
         })
         .then((res) => {
             console.log(res.data);
-
         })
         .catch((err) => {
             console.warn(err);

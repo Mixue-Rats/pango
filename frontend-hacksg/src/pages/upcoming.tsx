@@ -1,13 +1,11 @@
 import React from 'react';
-import LongCard from '../components/LongCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import test from '../assets/images/banner.png';
 import { Event } from '../types/Event';
-import TabContainer from '../components/TabContainer';
 import PaginatedCards from '../components/PaginatedCards';
 import { useAuthContext } from '../hooks/useAuthContext';
 import withAuth from '../components/Auth';
+import { Container } from 'react-bootstrap';
 
 
 const Upcoming: React.FC = () => {
@@ -39,10 +37,11 @@ const Upcoming: React.FC = () => {
 
 
     return (
-        <div>
-            <h1>Upcoming</h1>
-            <PaginatedCards events={events}/>
-                
+        <div className='page'>
+            <Container className='mt-3'>
+                <h1 className='m-3'>Upcoming Events</h1>
+                <PaginatedCards events={events}/>
+            </Container>
         </div>
     );
 };

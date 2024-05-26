@@ -19,7 +19,7 @@ const PaginatedCards = ({ events }: { events: any[] }) => {
 
     return (
         <Container>
-            <Row>
+            <Row className='mb-3'>
                 {currentPageItems.map(event => (
                     <Col key={event.id} sm={12} md={6} lg={4}>
                         <LongCard {...event} />

@@ -1,5 +1,5 @@
 {
-  "proxy": "http://192.168.1.2:3010",
+  "proxy": "https://terrific-forgiveness-production.up.railway.app",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
