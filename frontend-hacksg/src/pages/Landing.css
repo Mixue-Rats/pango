@@ -5,6 +5,7 @@
     text-align: center; /* Center align text */
     padding: 40px 20px; /* Padding around the content */
     background: #f4f4f4; /* Light grey background */
+    min-height: 100vh; /* Full height */
 }
 
 .landing-container h1 {
