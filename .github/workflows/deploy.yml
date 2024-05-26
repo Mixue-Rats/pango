@@ -1,0 +1,36 @@
+name: Deploy Pango app to Vercel
+
+on:
+  push:
+    branches:
+      - frontend-deploy
+
+jobs:
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Specify the Node.js version you need
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build the frontend
+        run: |
+          cd frontend
+
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          cd frontend
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
+
