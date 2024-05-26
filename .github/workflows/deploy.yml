@@ -17,11 +17,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Specify the Node.js version you need
+          node-version: "16" # Specify the Node.js version you need
 
       - name: Install dependencies
         run: |
-          cd frontend
+          cd frontend-hacksg
           npm install
 
       - name: Build the frontend
@@ -33,4 +33,3 @@ jobs:
           npm install -g vercel
           cd frontend
           vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
-
